@@ -8,6 +8,7 @@ import * as bcrypt from 'bcrypt'
 export class UsersService {
   async create(createUserDto: UserDto) {
     createUserDto.PASSWORD = await bcrypt.hash(createUserDto.PASSWORD, 8);
+    // createUserDto.PASSWORD = createUserDto.PASSWORD;
     const user = User.create(createUserDto);
     await user.save();
     return user;
